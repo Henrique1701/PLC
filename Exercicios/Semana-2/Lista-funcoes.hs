@@ -65,6 +65,16 @@ sumTo :: Integer -> Integer
 sumTo x = tailSumTo x 0
 {-------------}
 
+{- Questão 9 -}
+tailPotencia :: Integer -> Integer -> Integer -> Integer
+tailPotencia n k aux
+ | k == 0    = aux
+ | otherwise = tailPotencia (n) (k-1) (n*aux)
+
+potencia :: Integer -> Integer -> Integer
+potencia n k = tailPotencia n k 1
+{-------------}
+
 {- Questão x -}
 
 {-------------}
