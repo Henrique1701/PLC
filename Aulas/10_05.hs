@@ -78,5 +78,13 @@ ehPar x = x `mod` 2 == 0
 dobraListaPar :: [Int] -> [Int]
 dobraListaPar l = [2 * x | x <- l, ehPar x]
 
+triangulos = [(a, b, c) | c <- [1 .. 9], b <- [1 .. 9], a <- [1 .. 9],
+              a < b + c, b < a + c, c < a + b]
+
+triangulosRetangulos = [(a, b, c) | c <- [1 .. 9], b <- [1 .. 9], a <- [1 .. 9], 
+                        a ^ 2 + b ^ 2 == c ^ 2]
+
+triangulosRetangulosPerim24 = [(a, b, c) | c <- [1 .. 10], b <- [1 .. 10], a <- [1 .. 10], 
+                        a ^ 2 + b ^ 2 == c ^ 2, a + b + c == 24]
 {----------------}
 
