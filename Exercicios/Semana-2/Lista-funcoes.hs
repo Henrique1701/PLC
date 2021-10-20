@@ -83,17 +83,17 @@ coeficienteBinomial n k = (coeficienteBinomial (n-1) k) + (coeficienteBinomial (
 {-------------}
 
 {- Questão 11 -}
-tailTribonacci :: Integer -> Integer -> Integer -> Integer -> Integer -> Integer
+tailTribonacci :: Int -> Int -> Int -> Int -> Int -> Int
 tailTribonacci parada anterior2 anterior1 acumulador indece
  | indece == parada = acumulador
  | otherwise = tailTribonacci
-                             (parada) 
-                             (anterior1)  
-                             (acumulador) 
+                             (parada)
+                             (anterior1)
+                             (acumulador)
                              (anterior2 + anterior1 + acumulador)
                              (indece + 1)
 
-tribonacci :: Integer -> Integer
+tribonacci :: Int -> Int
 tribonacci 1 = 1
 tribonacci 2 = 1
 tribonacci 3 = 2
@@ -114,6 +114,31 @@ paraDireita :: Int -> String -> String
 paraDireita x s = addEspacos x ++ s
 {-------------}
 
-{- Questão x -}
+{- Questão 14 -}
+vendas :: Int -> Int
+vendas = tribonacci
 
+cabecalho = "Semana" ++ addEspacos 5 ++ "Venda" ++ "\n"
+
+imprimeSemanas :: Int -> Int -> String -> String
+imprimeSemanas n indece s
+ | indece == n = s
+ | indece < n = imprimeSemanas n (indece + 1) (s ++ show indece ++ addEspacos 5 ++ show (vendas indece) ++ "\n")
+
+imprimeTotal :: Int -> String
+imprimeTotal n = "Total" ++ addEspacos 5 ++ show (n) ++ "\n"
+
+calculaMedia :: Int -> Int -> Int -> Int
+calculaMedia n indece acumulador
+ | indece >= 0 = calculaMedia n (indece - 1) (acumulador + (vendas indece))
+ | otherwise = acumulador `div` n
+
+imprimeMedia :: Int -> String
+imprimeMedia n = "Média" ++ addEspacos 5 ++ show (calculaMedia n n 0) ++ "\n"
+
+imprimeTabela :: Int -> String
+imprimeTabela n = cabecalho
+                  ++ imprimeSemanas n 0 ""
+                  ++ imprimeTotal n
+                  ++ imprimeMedia n
 {-------------}
