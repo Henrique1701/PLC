@@ -61,8 +61,21 @@ twice not True
 = True
 -}
 
+twice2 :: (t -> t) -> t -> t
+twice2 f x = (f . f) x
+-- twice2 not True
+
 inc :: Int -> Int
 inc x = x + 1
 
-twice2 :: (t -> t) -> t -> t
-twice2 f x = (f . f) x
+iter :: Int -> (t -> t) -> (t -> t)
+iter 0 f = (f . f)
+iter n f = (iter (n-1) f) . f
+
+{-
+iter 3 g
+= (iter 2 g) . g
+= ((iter 1 g) . g) . g
+= (((iter 0 g) . g) . g) . g
+= ((id . g) . g) . g
+-}

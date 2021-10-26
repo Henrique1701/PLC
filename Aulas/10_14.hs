@@ -43,6 +43,8 @@ qSort (x:xs) = menorIgualX ++ [x] ++ maiorX
      menorIgualX = qSort [y | y <- xs, y <= x]
      maiorX = qSort [y | y <- xs, y > x]
 
+
+{-  Polimorfismo -}
 (+++) :: [t] -> [t] -> [t]
 []     +++ y = y
 (x:xs) +++ y = x : (xs +++ y)
