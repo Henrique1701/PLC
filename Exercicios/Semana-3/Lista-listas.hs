@@ -41,7 +41,11 @@ fib n = tailFib n 0 1 2
 tailFib :: Integer -> Integer -> Integer -> Integer -> Integer 
 tailFib parada anterior2 anterior1 indece
  | indece == parada = anterior1 + anterior2
+<<<<<<< HEAD
  | otherwise = tailFib parada anterior1 (anterior2 + anterior1) (indece + 1)
 
 -- Como testar: putStr (fibTable 8)
 {--------------}
+=======
+ | otherwise = tailFib parada anterior1 (anterior2 + anterior1) (indece + 1)
+>>>>>>> 45a7c885d904cb71ba517e6c87fdf9c191ef25c2
