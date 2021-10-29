@@ -45,3 +45,80 @@ tailFib parada anterior2 anterior1 indece
 
 -- Como testar: putStr (fibTable 8)
 {--------------}
+
+{- Questão 05 -}
+measure :: [a] -> Integer
+measure [] = -1
+measure (x:[]) = 1
+measure (x:xs) = 1 + measure xs
+{--------------}
+
+{- Questão 06 -}
+takeFinal :: Integer -> [a] -> [a]
+takeFinal _ [] = []
+takeFinal n (x:xs) 
+ | n >= measure (x:xs) = (x: takeFinal (n-1) xs)
+ | otherwise = takeFinal n xs
+{--------------}
+
+{- Questão 07 -}
+remove :: Integer -> [a] -> [a]
+remove _ [] = []
+remove n (x:xs)
+ | n == 0 = xs
+ | otherwise = x : remove (n-1) xs
+{--------------}
+
+{- Questão 08 -}
+retornaPrimeiroInteiro :: [Integer] -> Integer
+retornaPrimeiroInteiro [] = 0
+retornaPrimeiroInteiro (x:_) = x
+
+retornaPrimeiroInteiro2 :: [Integer] -> Integer
+retornaPrimeiroInteiro2 l 
+ | measure l > 0 = head l
+ | otherwise = 0
+{--------------}
+
+{- Questão 09 -}
+somaDoisPrimeiros :: [Integer] -> Integer
+somaDoisPrimeiros [] = 0
+somaDoisPrimeiros (x:[]) = x
+somaDoisPrimeiros (x:y:_) = x + y
+
+somaDoisPrimeiros2 :: [Integer] -> Integer
+somaDoisPrimeiros2 l 
+ | measure l >= 2 = head l + head (tail l)
+ | measure l == 1 = head l
+ | otherwise = 0
+{--------------}
+
+{- Questão 10 -}
+produto :: [Integer] -> Integer
+produto [] = 1
+produto (x:[]) = x
+produto (x:xs) = x * produto xs
+{--------------}
+
+{- Questão 11 -}
+unique :: [Integer] -> [Integer]
+unique [] = []
+unique (x:xs) 
+ | notElem x xs = x : unique xs
+ | otherwise = unique (removeTodos x xs)
+
+removeTodos :: Integer -> [Integer] -> [Integer]
+removeTodos _ [] = []
+removeTodos n (x:xs)
+ | n == x = removeTodos n xs
+ | otherwise = x : removeTodos n xs
+{--------------}
+
+{- Questão 12 -}
+emOrdemCrescente :: [Integer] -> Bool
+emOrdemCrescente [] = True
+emOrdemCrescente (x:[]) = True
+emOrdemCrescente (x:y:xs)
+ | x > y = False
+ | otherwise = emOrdemCrescente (y:xs)
+{--------------}
